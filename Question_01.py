@@ -7,42 +7,62 @@ from os.path import exists
 class FileHelper:
     def __init__(self):
         self.file = None
-
+    
     def write_to_file(self, data):
         import os
         file_exists = os.path.exists("output.text")
         
-        #if file_exists:
-        
-        
-class StudentScores:
+        # if file_exists:
+
+
+class Student:
     def __init__(self):
-        self.studentName = None
-        self.studentsScores = None
+        self.scores = student.scores  # list
+        self.firstName = student.firstName
+        self.lastName = student.lastName
+        self.averageScore = None
+        self.highScore = None
+        self.lowScore = None
+        self.letterGrade = None
+        self.scores = []
+
+    def add_score(self, score):
+        self.scores.append(score)
+
+    def process_scores(self):
+        self.highScore = 0  # Redefine for readability
+        self.lowScore = 0
+        score_sub_total = 0
+        number_of_scores = 5  # Number of scores (is constant)
+        
+        for score in self.scores:
+            if score > self.highScore:
+                self.highScore = score
+            
+            if score < self.lowScore:
+                self.lowScore = score
+            
+            score_sub_total += float(score)
+        
+        self.averageScore = score_sub_total / number_of_scores
     
-    @staticmethod
-    def __letter_grade_from_score(score):
-        # CHECK: add error checking for greater than 100 and negative?
-        if score >= 90:
-            return 'A'
-        elif score >= 80:
-            return 'B'
-        elif score >= 70:
-            return 'C'
-        elif score >= 60:
-            return 'E'
+    def calculate_letter_grade(self):
+        score_value = self.averageScore
+
+        if score_value >= 90:
+            grade = 'A'
+        elif score_value >= 80:
+            grade = 'B'
+        elif score_value >= 70:
+            grade = 'C'
+        elif score_value >= 60:
+            grade = 'D'
+        elif score_value >= 50:
+            grade = 'E'
         else:
-            return 'F'
-    
-    # @staticmethod
-    # def __check_output_file_exists:
-    
-    def read_input_file(self):
-        return
-    
-    # def calculate_average_score:
-    #   for each student
-    #   for each score
+            grade = 'F'
+        
+        self.letterGrade = grade
 
 
 class ClassStatistics:
@@ -52,10 +72,35 @@ class ClassStatistics:
         self.medianGrade = None
         self.stdDeviation = None
         self.allScores = None
+    
+    def add_student(self, student_obj):
+        self.add_student(student_obj)
 
 
 if __name__ == '__main__':
-    file = open("input.txt", 'r')           # Read file and store to local var
+    classStats = ClassStatistics()                                              # Class statistics object
+    arr_of_lines = []                                                           # List for each line of the file
     
-    #for line in file:
+    file = open("input.txt", 'r')                                               # Open the file in read mode
     
+    for line in file:
+        currentLine = line                                                      # Local copy of current line of file
+        currentLine.split(' ')                                                  # Remove all spaces from current line
+        arr_of_lines.append(line)                                               # Append the delimited-line to list
+
+    nameReadCount = 2                                                           # Will indicate if student names stored
+    for data in arr_of_lines:                                                   # Store the data (either score or name)
+        student = Student()
+    
+        while True:
+            if data == '\n':
+                break
+            elif nameReadCount == 2:
+                student.firstName = data
+            elif nameReadCount == 1:
+                student.lastName = data
+            else:
+                student.add_score(data)
+    
+        classStats.add_student(student)                                         # Store the just-built student object
+        nameReadCount -= nameReadCount
