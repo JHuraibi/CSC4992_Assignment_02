@@ -5,18 +5,20 @@
 
 # ----| Functions |--------------------------------------------------------------------------------------------------- #
 
-def write_to_file(all_students):
+def write_student_to_file(all_students):
     """Prints/Outputs student information to ('output.txt': text file)"""
     file = open("output.txt", "w")
     student_num = 1
     
-
-    
     for student in all_students:
-        firstName = students[0]
-        lastName = students[0]
-        
-        file.write("{ID}) {} {}".format(student_num, students[0], students[1]))
+        firstName = student[0]
+        lastName = student[1]
+
+        file.write("{ID}) {} {}".format(student_num, firstName, lastName))
+        file.write("Average score: {}".format(avgScore))
+        file.write("{ID}) {} {}".format(student_num, firstName, lastName))
+        file.write("{ID}) {} {}".format(student_num, firstName, lastName))
+        file.write("{ID}) {} {}".format(student_num, firstName, lastName))
     
 
 def process_raw_line(line_to_process):
@@ -82,22 +84,27 @@ def convert_to_letter_grade(score):
 if __name__ == '__main__':
     students = []                                                               # List of students
     data = []                                                                   # List for each line of the file
+    ID = 0                                                                      # X-axis controller for (students: list)
     
     fileInStream = open("input.txt", 'r')                                       # Open the file in read mode
-    fileOutStream = open("output.txt", 'w')                                     # (Open) or (Create + Open) "output.txt"
     
-    fileOutStream.write("******************")                                   # Write file header
-    fileOutStream.write(" Students Records ")
-    fileOutStream.write("******************")
-    
-    for line in fileInStream:
-        student = process_raw_line(line)                                        # Remove unwanted characters
+    for raw_line in fileInStream:
+        student = process_raw_line(raw_line)                                    # Remove unwanted characters
         
         firstName = student[0]
         lastName = student[1]
+        avgScore = calculate_average_score(student[2:7])
         highScore = find_high_score(student[2:7])
         lowScore = find_low_score(student[2:7])
-        avgScore = calculate_average_score(student[2:7])
         letterGrade = convert_to_letter_grade(avgScore)
+
+        students[ID][0] = firstName
+        students[ID][1] = lastName
+        students[ID][2] = avgScore
+        students[ID][3] = highScore
+        students[ID][4] = letterGrade
         
-        
+        ID = ID + 1
+    
+    for student in students:
+        write_student_to_file(student)
