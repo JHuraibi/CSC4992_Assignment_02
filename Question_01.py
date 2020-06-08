@@ -5,17 +5,7 @@
 
 # ----| Functions |--------------------------------------------------------------------------------------------------- #
 
-def write_to_file(all_students):
-    """Prints/Outputs student information to ('output.txt': text file)"""
-    file = open("output.txt", "w")
-    ID = 0
-    
-    file.write("******************")
-    file.write(" Students Records ")
-    file.write("******************")
-    
-
-def process_raw_line(line_to_process):
+def process_raw_info(line_to_process):
     """Removes colon and commas from (line_to_process: str). Returns list delimited by SPACE(' ')."""
     processed_line = line_to_process                                            # "line_to_process" is immutable
     
@@ -78,27 +68,22 @@ def convert_to_letter_grade(score):
 if __name__ == '__main__':
     students = []                                                               # List of students
     data = []                                                                   # List for each line of the file
-    ID = 0                                                                      # X-axis controller for (students: list)
     
-    file = open("input.txt", 'r')                                               # Open the file in read mode
+    fileInStream = open("input.txt", 'r')                                       # Open the file in read mode
+    fileOutStream = open("output.txt", 'w')                                     # (Open) or (Create + Open) "output.txt"
     
-    for line in file:
-        currentLine = process_raw_line(line)                                    # Remove unwanted characters
+    fileOutStream.write("******************")                                   # Write file header
+    fileOutStream.write(" Students Records ")
+    fileOutStream.write("******************")
+    
+    for line in fileInStream:
+        student = process_raw_info(line)                                        # Remove unwanted characters
         
-        firstName = currentLine[0]
-        lastName = currentLine[1]
-        highScore = find_high_score(currentLine[2:7])
-        lowScore = find_low_score(currentLine[2:7])
-        avgScore = calculate_average_score(currentLine[2:7])
+        firstName = student[0]
+        lastName = student[1]
+        highScore = find_high_score(student[2:7])
+        lowScore = find_low_score(student[2:7])
+        avgScore = calculate_average_score(student[2:7])
         letterGrade = convert_to_letter_grade(avgScore)
         
-        students[ID][0] = firstName
-        students[ID][1] = lastName
-        students[ID][2] = avgScore
-        students[ID][3] = highScore
-        students[ID][4] = letterGrade
         
-        ID = ID + 1
-    
-    for student in students:
-        write_to_file(student)
