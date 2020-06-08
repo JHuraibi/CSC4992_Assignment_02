@@ -1,0 +1,8 @@
+Notes
+
+For branch [ DictionaryFeasibility/wip ]:
+
+Using a Dictionary and storing its keys in a List does seem doable at this point.
+However, categorizing as "feasibility" may be a stretch. The low complexity of the assignment
+does not really warrant using such a relatively-complex solution. Nonetheless,
+I'm continuing since I find this solution much more interesting.

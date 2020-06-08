@@ -36,8 +36,8 @@ def find_high_score(all_scores):
     high_score = 0.0
     
     for score in all_scores:
-        if score > high_score:
-            high_score = score
+        if float(score) > high_score:
+            high_score = float(score)
     
     return high_score
 
@@ -47,7 +47,7 @@ def find_low_score(all_scores):
     low_score = 0.0
     
     for score in all_scores:
-        if score < low_score:
+        if float(score) < low_score:
             low_score = score
     
     return low_score
@@ -59,7 +59,7 @@ def calculate_average_score(all_scores):
     num_of_scores = len(all_scores)
     
     for score_value in all_scores:
-        scores_subtotal += score_value
+        scores_subtotal += float(score_value)
     
     return scores_subtotal / num_of_scores
 
@@ -83,6 +83,7 @@ def convert_to_letter_grade(score):
 # ----| main |-------------------------------------------------------------------------------------------------------- #
 if __name__ == '__main__':
     students = []                                                               # List of students
+    info = []
     data = []                                                                   # List for each line of the file
     ID = 0                                                                      # X-axis controller for (students: list)
     
@@ -98,12 +99,12 @@ if __name__ == '__main__':
         lowScore = find_low_score(student[2:7])
         letterGrade = convert_to_letter_grade(avgScore)
 
-        students[ID][0] = firstName
-        students[ID][1] = lastName
-        students[ID][2] = avgScore
-        students[ID][3] = highScore
-        students[ID][4] = letterGrade
-        
+        info[0] = firstName
+        info[1] = lastName
+        info[2] = avgScore
+        info[3] = highScore
+        info[4] = letterGrade
+        students[ID] = info
         ID = ID + 1
     
     for student in students:
