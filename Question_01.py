@@ -5,7 +5,21 @@
 
 # ----| Functions |--------------------------------------------------------------------------------------------------- #
 
-def process_raw_info(line_to_process):
+def write_to_file(all_students):
+    """Prints/Outputs student information to ('output.txt': text file)"""
+    file = open("output.txt", "w")
+    student_num = 1
+    
+
+    
+    for student in all_students:
+        firstName = students[0]
+        lastName = students[0]
+        
+        file.write("{ID}) {} {}".format(student_num, students[0], students[1]))
+    
+
+def process_raw_line(line_to_process):
     """Removes colon and commas from (line_to_process: str). Returns list delimited by SPACE(' ')."""
     processed_line = line_to_process                                            # "line_to_process" is immutable
     
@@ -77,7 +91,7 @@ if __name__ == '__main__':
     fileOutStream.write("******************")
     
     for line in fileInStream:
-        student = process_raw_info(line)                                        # Remove unwanted characters
+        student = process_raw_line(line)                                        # Remove unwanted characters
         
         firstName = student[0]
         lastName = student[1]
