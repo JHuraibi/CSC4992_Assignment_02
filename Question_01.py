@@ -8,12 +8,15 @@ class FileHelper:
     def __init__(self):
         self.file = None
     
+    @staticmethod
     def write_to_file(self, data):
         import os
         file_exists = os.path.exists("output.text")
         
-        # if file_exists:
-
+        if not file_exists:
+            # DONT overwrite
+            pass
+        
 
 class Student:
     def __init__(self):
@@ -85,22 +88,27 @@ if __name__ == '__main__':
     
     for line in file:
         currentLine = line                                                      # Local copy of current line of file
-        currentLine.split(' ')                                                  # Remove all spaces from current line
-        arr_of_lines.append(line)                                               # Append the delimited-line to list
-
-    nameReadCount = 2                                                           # Will indicate if student names stored
-    for data in arr_of_lines:                                                   # Store the data (either score or name)
-        student = Student()
+        
+        currentLine.replace(':', '\0')                                          # Remove the colon (:)
+        currentLine.replace(',', '\0')                                          # Remove the commas
+        currentLine.split(' ')                                                  # Split line (Delimiter: SPACE ' ')
+        
+        arr_of_lines.append(line)                                               # Append the processed line to list
     
-        while True:
+    for data in arr_of_lines:
+        student = Student()
+        
+        for value in range(0, 5):
             if data == '\n':
                 break
             elif nameReadCount == 2:
                 student.firstName = data
+                nameReadCount -= nameReadCount
             elif nameReadCount == 1:
                 student.lastName = data
+                nameReadCount -= nameReadCount
             else:
                 student.add_score(data)
     
         classStats.add_student(student)                                         # Store the just-built student object
-        nameReadCount -= nameReadCount
+        nameReadCount = 2                                                       # Reset name counter
