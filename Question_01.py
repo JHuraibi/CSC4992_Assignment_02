@@ -1,114 +1,75 @@
 # Author: Jamal Huraibi, fh1328
 # Assignment 2
 # Question 1
-from os.path import exists
 
 
-class FileHelper:
-    def __init__(self):
-        self.file = None
+def write_to_file(data_to_write):
+    """Prints/Outputs (data_to_write: str) to file (output.txt)"""
+    import os
+    file_exists = os.path.exists("output.text")
     
-    @staticmethod
-    def write_to_file(self, data):
-        import os
-        file_exists = os.path.exists("output.text")
-        
-        if not file_exists:
-            # DONT overwrite
-            pass
-        
-
-class Student:
-    def __init__(self):
-        self.scores = student.scores  # list
-        self.firstName = student.firstName
-        self.lastName = student.lastName
-        self.averageScore = None
-        self.highScore = None
-        self.lowScore = None
-        self.letterGrade = None
-        self.scores = []
-
-    def add_score(self, score):
-        self.scores.append(score)
-
-    def process_scores(self):
-        self.highScore = 0  # Redefine for readability
-        self.lowScore = 0
-        score_sub_total = 0
-        number_of_scores = 5  # Number of scores (is constant)
-        
-        for score in self.scores:
-            if score > self.highScore:
-                self.highScore = score
-            
-            if score < self.lowScore:
-                self.lowScore = score
-            
-            score_sub_total += float(score)
-        
-        self.averageScore = score_sub_total / number_of_scores
+    if not file_exists:
+        # DONT overwrite
+        pass
+    else:
+        # Overwrite OK
+        pass
     
-    def calculate_letter_grade(self):
-        score_value = self.averageScore
 
-        if score_value >= 90:
-            grade = 'A'
-        elif score_value >= 80:
-            grade = 'B'
-        elif score_value >= 70:
-            grade = 'C'
-        elif score_value >= 60:
-            grade = 'D'
-        elif score_value >= 50:
-            grade = 'E'
-        else:
-            grade = 'F'
-        
-        self.letterGrade = grade
+def process_raw_line(line_to_process):
+    """Removes colon and commas from (line_to_process: str). Delimits by SPACE(' ')."""
+    processed_line = line_to_process
 
-
-class ClassStatistics:
-    def __init__(self):
-        self.numOfStudents = None
-        self.averageScore = None
-        self.medianGrade = None
-        self.stdDeviation = None
-        self.allScores = None
+    processed_line.replace(':', '\0')                                          # Remove the colon (:)
+    processed_line.replace(',', '\0')                                          # Remove the commas
+    processed_line.split(' ')                                                  # Split line (Delimiter: SPACE ' ')
     
-    def add_student(self, student_obj):
-        self.add_student(student_obj)
+    return processed_line
+
+
+def process_scores(raw_data):
+    """Builds a list of scores from (raw_data: str)."""
+    number_of_scores = -5
+    list_of_scores = []
+    
+    for index in range(-1, number_of_scores):
+        score = raw_data[index]
+        list_of_scores.append(score)
+        
+    return list_of_scores
+
+
+def calculate_letter_grade(score):
+    """Returns the letter grade for (score: float)"""
+    if score >= 90.0:
+        return 'A'
+    elif score >= 80.0:
+        return 'B'
+    elif score >= 70.0:
+        return 'C'
+    elif score >= 60.0:
+        return 'D'
+    elif score >= 50.0:
+        return 'E'
+    else:
+        return 'F'
 
 
 if __name__ == '__main__':
-    classStats = ClassStatistics()                                              # Class statistics object
-    arr_of_lines = []                                                           # List for each line of the file
+    # students(fName, lName, scores[], GPA)
+    student_data = []                                                           # List for each line of the file
+    indexFName = 0
+    indexLName = 1
+    indexScores = 2
+    indexGPA = 3
     
     file = open("input.txt", 'r')                                               # Open the file in read mode
     
     for line in file:
-        currentLine = line                                                      # Local copy of current line of file
+        # File is opened in "read" mode
+        currentLine = process_raw_line(line)                                    # Format the line
+        student_data.append(currentLine)                                        # Append the processed line to list
         
-        currentLine.replace(':', '\0')                                          # Remove the colon (:)
-        currentLine.replace(',', '\0')                                          # Remove the commas
-        currentLine.split(' ')                                                  # Split line (Delimiter: SPACE ' ')
-        
-        arr_of_lines.append(line)                                               # Append the processed line to list
-    
-    for data in arr_of_lines:
-        student = Student()
-        
-        for value in range(0, 5):
-            if data == '\n':
-                break
-            elif nameReadCount == 2:
-                student.firstName = data
-                nameReadCount -= nameReadCount
-            elif nameReadCount == 1:
-                student.lastName = data
-                nameReadCount -= nameReadCount
-            else:
-                student.add_score(data)
-    
-        classStats.add_student(student)                                         # Store the just-built student object
-        nameReadCount = 2                                                       # Reset name counter
+    for data in student_data:
+        students_scores = process_scores(data)
+        print()
