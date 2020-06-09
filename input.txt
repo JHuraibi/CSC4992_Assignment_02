@@ -1,2 +1,13 @@
 John Smith: 78, 80, 89, 73, 90
 Sara Jones: 66, 81, 83, 75, 78
+Billy Talent: 78, 92, 90, 71, 84
+Dario Harrell: 90, 88, 58, 52, 71
+Teresa Hinton: 96, 95, 80, 89, 90
+Nestor Strickland: 74, 69, 50, 95, 51
+Edith Mccoy: 82, 92, 54, 98, 96
+Michelle Henry: 59, 52, 66, 51, 71
+Brittney Barry: 81, 83, 88, 74, 61
+Grady Carlson: 99, 78, 76, 66, 86
+Lillie Coffey: 68, 81, 89, 98, 85
+Jody Odonnell: 65, 68, 84, 100, 40
+Enrique Baldwin: 69, 96, 75, 49, 57
