@@ -14,4 +14,6 @@ Will return in future to revisit storing generated keys in a list to a dictionar
 I will use my method of appending the student ID to their GPA (e.g. 8434.153 for ID 153 w/ GPA of 84.34) or 
 just hash the info.
 
+![Sorted Method](/testing_sorted()_GoogleCOLAB.PNG)
+
 This is very informal...
