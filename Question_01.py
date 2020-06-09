@@ -186,7 +186,7 @@ if __name__ == '__main__':
         students.append(studentInfo)                                            # Assign the sublist to current index
         ID = ID + 1                                                             # Increment ID
     
-    # GPA == students[n][3]
+    # GPA == students[n][2]
     students = sorted(students, key=lambda gpa: gpa[2], reverse=True)           # Sort the list by GPA, descending
     
     write_student_info_to_file(students)                                        # Write each student's info to file
