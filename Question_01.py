@@ -187,7 +187,7 @@ if __name__ == '__main__':
         ID = ID + 1                                                             # Increment ID
     
     # GPA == students[n][3]
-    students = sorted(students, key=lambda gpa: gpa[3], reverse=True)           # Sort the list by GPA, descending
+    students = sorted(students, key=lambda gpa: gpa[2], reverse=True)           # Sort the list by GPA, descending
     
     write_student_info_to_file(students)                                        # Write each student's info to file
     write_class_stats_to_file(students)                                         # Write class statistics to file
