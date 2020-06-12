@@ -187,4 +187,6 @@ if __name__ == '__main__':
     
     write_student_info_to_file(students)                                        # Write each student's info to file
     write_class_stats_to_file(students)                                         # Write class statistics to file
+
+    fileInStream.close()                                                        # Close the stream
     
