@@ -174,19 +174,15 @@ def extract_student_information(data):
 # ----| main |-------------------------------------------------------------------------------------------------------- #
 if __name__ == '__main__':
     students = []                                                               # List of students (will be 2D later)
-    ID = 0                                                                      # Will handle students[][] y-dimension
-    
-    fileInStream = open("input.txt", 'r')                                       # Open the file in read mode
-    fileOutStream = open("output.txt", 'w')                                     # (Open) or (Create + Open) "output.txt"
+    fileInStream = open("input.txt", 'r')                                       # Open the in-stream file in read mode
     
     for line in fileInStream:
         currentLine = process_raw_line(line)                                    # Remove unwanted characters
 
         studentInfo = extract_student_information(currentLine)                  # Build the list of info
         students.append(studentInfo)                                            # Assign the sublist to current index
-        ID = ID + 1                                                             # Increment ID
     
-    # GPA == students[n][2]
+    # Student GPA's are stored at: students[n][2]
     students = sorted(students, key=lambda gpa: gpa[2], reverse=True)           # Sort the list by GPA, descending
     
     write_student_info_to_file(students)                                        # Write each student's info to file
