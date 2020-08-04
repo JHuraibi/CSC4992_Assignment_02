@@ -199,7 +199,7 @@ if __name__ == '__main__':
         studentInfo = extract_student_information(currentLine)                  # Build the list of info
         students.append(studentInfo)                                            # Assign the sublist to current index
     
-    # Student GPA's are stored at: students[n][2]
+    # Student GPA's: gpa[2] == students[n][2]
     students = sorted(students, key=lambda gpa: gpa[2], reverse=True)           # Sort the list by GPA, descending
     
     write_student_info_to_file(students)                                        # Write each student's info to file
