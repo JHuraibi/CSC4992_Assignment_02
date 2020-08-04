@@ -89,6 +89,7 @@ def find_low_score(all_scores):
     return low_score                                                            # Return lowest score found
 
 
+# TODO: Value bring printed has large decimal place
 def calculate_average_score(all_scores):
     """Returns average score of provided List"""
     scores_subtotal = 0.0
