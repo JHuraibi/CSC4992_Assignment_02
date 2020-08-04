@@ -153,14 +153,14 @@ def calculate_std_dev_gpa(class_students):
 def extract_student_information(data):
     """Returns a List of all the student's information extracted from the string"""
     student_information = []
-    
-    first_name = data[0]                                                        # Intermediate var's for ease of reading
+
+    first_name = data[0]
     last_name = data[1]
     scores = extract_student_scores(data[2:])                                   # Remaining values should only be scores
-    # UPDATE BELOW
-    average_score = calculate_average_score(data[2:7])
-    high_score = find_high_score(data[2:7])
-    low_score = find_low_score(data[2:7])
+
+    average_score = calculate_average_score(scores)
+    high_score = find_high_score(scores)
+    low_score = find_low_score(scores)
 
     letter_grade = convert_to_letter_grade(average_score)
     
