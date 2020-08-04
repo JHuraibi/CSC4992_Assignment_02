@@ -156,9 +156,12 @@ def extract_student_information(data):
     
     first_name = data[0]                                                        # Intermediate var's for ease of reading
     last_name = data[1]
+    scores = extract_student_scores(data[2:])                                   # Remaining values should only be scores
+    # UPDATE BELOW
     average_score = calculate_average_score(data[2:7])
     high_score = find_high_score(data[2:7])
     low_score = find_low_score(data[2:7])
+
     letter_grade = convert_to_letter_grade(average_score)
     
     student_information.append(first_name)                                      # Build the List
@@ -169,7 +172,21 @@ def extract_student_information(data):
     student_information.append(letter_grade)
     
     return student_information                                                  # Return built List of student's info
-    
+
+
+def extract_student_scores(data):
+    """Returns a List of the student's scores. "data" should only be scores.
+    Checks if each item in data is a number or not also. Appends to "scores" if it is."""
+    scores = []
+    for value in data:
+        try:
+            float(value)
+            scores.append(value)                                                # Append the number to the List scores
+        except ValueError:
+            print("[INFO]: Non-number value encountered. Offender: {}\n"        # If float cast fails then not a number
+                  .format(value))
+
+    return scores                                                               # Return the built list of scores
     
 # ----| main |-------------------------------------------------------------------------------------------------------- #
 if __name__ == '__main__':
